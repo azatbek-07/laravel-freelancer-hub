@@ -299,8 +299,7 @@
     </div>
 </section>
 
-<script>
-    lucide.createIcons();
-</script>
+
+
 
 @endsection
