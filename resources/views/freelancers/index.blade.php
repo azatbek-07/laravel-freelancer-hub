@@ -107,77 +107,180 @@
                     <!-- Freelancer Card 1 -->
                     <div
                         class="group bg-white rounded-3xl p-6 shadow-sm hover:shadow-2xl hover:shadow-indigo-100 transition-all duration-500 border border-gray-100 hover:border-indigo-100">
+
+                        
                         <!-- Top Section -->
                         <div class="flex items-start justify-between mb-4">
+
                             <div class="flex items-center gap-4">
+
                                 <div class="relative">
-                                    <img src="{{ $freelancer->image }}" alt="Aziz Karimov"
+
+                                    <img src="{{ $freelancer->image }}" alt="{{ $freelancer->name }}"
                                         class="w-16 h-16 rounded-2xl object-cover">
-                                    <span
-                                        class="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full border-2 border-white"
-                                        title="{{ $freelancer->status }}"></span>
+
+                                    <span class="absolute -bottom-1 -right-1 w-5 h-5
+                        {{ $freelancer->status === 'online' ? 'bg-green-500' : 'bg-gray-400' }}
+                        rounded-full border-2 border-white" title="{{ $freelancer->status }}">
+                                    </span>
+
                                 </div>
+
                                 <div>
-                                    <h3 class="font-bold text-secondary text-lg">{{ $freelancer->name }}</h3>
-                                    <p class="text-sm text-gray-500">{{ $freelancer->job }}</p>
+
+                                    <h3 class="font-bold text-secondary text-lg">
+                                        {{ $freelancer->name }}
+                                    </h3>
+
+                                    <p class="text-sm text-gray-500">
+                                        {{ $freelancer->job }}
+                                    </p>
+
                                 </div>
+
                             </div>
+
+
                             <button class="text-gray-300 hover:text-red-500 transition-colors">
+
                                 <i data-lucide="heart" class="w-5 h-5"></i>
+
                             </button>
+
                         </div>
+
 
                         <!-- Rating & Reviews -->
                         <div class="flex items-center gap-2 mb-4">
+
                             <div class="flex items-center gap-1">
-                                <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current"></i>
-                                <span class="font-bold text-secondary text-sm">{{ $freelancer->rating }}</span>
+
+                                <i data-lucide="star" class="w-4 h-4 text-yellow-500 fill-current">
+                                </i>
+
+                                <span class="font-bold text-secondary text-sm">
+                                    {{ $freelancer->rating }}
+                                </span>
+
                             </div>
-                            <span class="text-gray-400 text-sm">({{ $freelancer->reviews }} ta sharh)</span>
+
+                            <span class="text-gray-400 text-sm">
+                                ({{ $freelancer->reviews }} ta sharh)
+                            </span>
+
                         </div>
+
 
                         <!-- Skills -->
                         <div class="flex flex-wrap gap-2 mb-4">
-                            <span
-                                class="text-xs font-medium bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-full">@foreach ($freelancer->skills as $skill)
-                                    <span class="text-xs font-medium bg-indigo-50 text-indigo-600 px-3 py-1.5 rounded-full">
-                                        {{ $skill }}
-                                    </span>
-                                @endforeach</span>
+
+                            @foreach ($freelancer->skills as $skill)
+
+                                <span class="text-xs font-medium
+                                 bg-indigo-50
+                                 text-indigo-600
+                                 px-3 py-1.5
+                                 rounded-full">
+
+                                    {{ $skill }}
+
+                                </span>
+
+                            @endforeach
+
                         </div>
+
 
                         <!-- Description -->
                         <p class="text-sm text-gray-500 mb-4 line-clamp-2">
+
                             {{ $freelancer->description }}
 
-                            <!-- Stats -->
+                        </p>
+
+
+                        <!-- Stats -->
                         <div class="grid grid-cols-3 gap-3 mb-4">
+
                             <div class="text-center bg-gray-50 rounded-xl py-2">
-                                <div class="text-sm font-bold text-secondary">{{ $freelancer->projects }}</div>
-                                <div class="text-xs text-gray-500">Loyiha</div>
+
+                                <div class="text-sm font-bold text-secondary">
+                                    {{ $freelancer->projects }}
+                                </div>
+
+                                <div class="text-xs text-gray-500">
+                                    Loyiha
+                                </div>
+
                             </div>
+
+
                             <div class="text-center bg-gray-50 rounded-xl py-2">
-                                <div class="text-sm font-bold text-secondary">{{ $freelancer->experience }}</div>
-                                <div class="text-xs text-gray-500">Yil</div>
+
+                                <div class="text-sm font-bold text-secondary">
+                                    {{ $freelancer->experience }}
+                                </div>
+
+                                <div class="text-xs text-gray-500">
+                                    Yil
+                                </div>
+
                             </div>
+
+
                             <div class="text-center bg-gray-50 rounded-xl py-2">
-                                <div class="text-sm font-bold text-secondary">{{ $freelancer->succes }}</div>
-                                <div class="text-xs text-gray-500">Muvaffaqiyat</div>
+
+                                <div class="text-sm font-bold text-secondary">
+                                    {{ $freelancer->success }}
+                                </div>
+
+                                <div class="text-xs text-gray-500">
+                                    Muvaffaqiyat
+                                </div>
+
                             </div>
+
                         </div>
 
+
                         <!-- Price & Action -->
-                        <div class="flex items-center justify-between pt-4 border-t border-gray-100">
+                        <div class="flex items-center justify-between
+                    pt-4 border-t border-gray-100">
+
                             <div>
-                                <span class="text-lg font-extrabold text-secondary">${{ $freelancer->price }}</span>
-                                <span class="text-sm text-gray-500">/soat</span>
+
+                                <span class="text-lg font-extrabold text-secondary">
+                                    ${{ $freelancer->price }}
+                                </span>
+
+                                <span class="text-sm text-gray-500">
+                                    /soat
+                                </span>
+
                             </div>
-                            <button
-                                class="bg-secondary hover:bg-gray-800 text-white px-5 py-2.5 rounded-xl font-semibold text-sm transition-all duration-300 shadow-lg shadow-gray-200">
+
+
+                            <a href="{{ route('freelancers.show', $freelancer->id) }}" class="bg-secondary
+                      hover:bg-gray-800
+                      text-white
+                      px-5 py-2.5
+                      rounded-xl
+                      font-semibold
+                      text-sm
+                      transition-all
+                      duration-300
+                      shadow-lg
+                      shadow-gray-200">
+
                                 Profilni ko'rish
-                            </button>
+
+                            </a>
+
                         </div>
+
+
                     </div>
+
                 @endforeach
 
             </div>
@@ -231,6 +334,6 @@
         </div>
     </section>
 
-    
+
 
 @endsection
