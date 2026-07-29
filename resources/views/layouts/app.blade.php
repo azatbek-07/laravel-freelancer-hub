@@ -97,14 +97,33 @@
 
                 <!-- Right Side -->
                 <div class="hidden lg:flex items-center gap-4">
-                    <button
-                        class="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition-colors px-4 py-2">
-                        Kirish
-                    </button>
-                    <button
-                        class="text-sm font-semibold text-white bg-secondary hover:bg-gray-800 px-6 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-gray-200">
-                        Ro'yxatdan o'tish
-                    </button>
+                    @auth
+                        {{-- Tizimga kirgan foydalanuvchi uchun --}}
+                        <span class="text-sm font-semibold text-gray-700 px-4 py-2 inline-block">
+                            {{ Auth::user()->name }}
+                        </span>
+                        <a href="{{ route('dashboard') }}"
+                            class="text-sm font-semibold text-white bg-secondary hover:bg-gray-800 px-6 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-gray-200 inline-block">
+                            Dashboard
+                        </a>
+                        <form method="POST" action="{{ route('logout') }}" class="inline">
+                            @csrf
+                            <button type="submit"
+                                class="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition-colors px-4 py-2">
+                                Chiqish
+                            </button>
+                        </form>
+                    @else
+                        {{-- Tizimga kirmagan foydalanuvchi uchun --}}
+                        <a href="{{ route('login') }}"
+                            class="text-sm font-semibold text-gray-700 hover:text-indigo-600 transition-colors px-4 py-2 inline-block">
+                            Kirish
+                        </a>
+                        <a href="{{ route('register') }}"
+                            class="text-sm font-semibold text-white bg-secondary hover:bg-gray-800 px-6 py-2.5 rounded-xl transition-all duration-300 shadow-lg shadow-gray-200 inline-block">
+                            Ro'yxatdan o'tish
+                        </a>
+                    @endauth
                 </div>
 
                 <!-- Mobile menu button -->
